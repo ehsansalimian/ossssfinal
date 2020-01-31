@@ -25,7 +25,7 @@ int sleep(int);
 int uptime(void);
 int ticketlockInit(void);
 int ticketlockTest(void);
-int rwtest(void);
+int rwtest(int);
 int rwinit(void);
 
 // ulib.c
