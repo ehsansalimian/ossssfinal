@@ -35,6 +35,15 @@ sys_ticketlockTest(void)
     return 0;
     
 }
+sys_rwinit(void)
+{
+  return rwinit();
+}
+
+sys_rwtest(void)
+{
+  return rwtest();
+}
 
 int
 sys_wait(void)

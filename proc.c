@@ -37,6 +37,23 @@ ticketlockInit(void)
 
 }
 
+void
+rwinit(void)
+{
+  initlock_t(&ptable.ticklock,"init");
+
+
+
+}
+
+void
+rwtest(void)
+{
+  
+
+
+}
+
 
 void
 ticketlockTest(void)
