@@ -17,6 +17,10 @@ struct {
 static struct proc *initproc;
 
 int nextpid = 1;
+ticklock* t1;
+ticklock* t2;
+int sum;
+int ReaderCount;
 extern void forkret(void);
 extern void trapret(void);
 
@@ -38,29 +42,50 @@ ticketlockInit(void)
 }
 
 void
-rwinit(void)
-{
-  initlock_t(&ptable.ticklock,"init");
-
-
-
-}
-
-void
-rwtest(void)
-{
-  
-
-
-}
-
-
-void
 ticketlockTest(void)
 {
   acquire_t(&ptable.ticklock);
   cprintf("%d",2);
   release_t(&ptable.ticklock);
+}
+
+
+void
+rwinit(void)
+{
+
+   sum=0;
+   ReaderCount=0;
+
+
+}
+
+void
+rwtest(int n)
+{
+  if (n==0)
+  {
+    acquire_t(t1);
+    ReaderCount++;
+    if(ReaderCount==1)
+      acquire_t(t2)
+    release_t(t1);
+    sum++;
+    acquire_t(t1);
+    ReaderCount--;
+    if(ReaderCount==0)
+      release_t(t2);
+    release_t(t1);
+    
+  }
+  else if (n==1)
+  {
+     acquire_t(t2);
+     sum=sum*2;
+     release_t(t2);
+  }
+
+
 }
 
 // Must be called with interrupts disabled
